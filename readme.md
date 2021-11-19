@@ -1,4 +1,4 @@
-React practices 😈
+## React practices 😈
 
 1. 기본개념(Basics)
 2. 컴포넌트(Component)
