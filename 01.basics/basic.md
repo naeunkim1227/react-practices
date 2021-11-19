@@ -1,4 +1,4 @@
-## React Practices - Basics
+## React Practices - Basics 😜
 
 + ex00 : create-react-app(cra) 으로 애플리케이션 빨리 만들어 보기
 + ex01 : 전통적인 DOM API 기반의 애플리케이션
