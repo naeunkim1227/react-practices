@@ -1,4 +1,4 @@
-ex04: 애플리케이션 번들링(bundling)
+# 01.basics > ex04 : 애플리케이션 번들링(bundling)
 
 1. webpack은 작게 분리된 많은 모듈(js,css,images ...등)들의 의존성을 분석해서 하나의 js파일로 묶은 도구이다.(번들링도구)
 2. 하나의 js파일을 번들(bundle)이라하고 묶는 작업을 번들링(bundling)이라고 한다. 
