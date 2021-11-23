@@ -57,3 +57,11 @@ import './assets/css/index.css'
    
   - 디버깅 할때 유용하다.
   - 중요 설정임
+
+
+
+
+  ### 최종 설치 항목
+npm i -D webpack webpack-cli webpack-dev-server style-loader css-loader sass-loader node-sass
+
+create-react-app 이 위의 모든 항목을 자동으로 설치해준다.

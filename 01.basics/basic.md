@@ -25,10 +25,3 @@ sass별로 loader가 있다 > 난독화, 테스트 , 압축(Lint, test, uglfy)�
 
 webpack에서 dev서버를 지원해준다.
 
-
-
-
-### 최종 설치 항목
-npm i -D webpack webpack-cli webpack-dev-server style-loader css-loader sass-loader node-sass
-
-create-react-app 이 위의 모든 항목을 자동으로 설치해준다.
