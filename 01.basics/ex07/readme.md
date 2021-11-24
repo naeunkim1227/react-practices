@@ -1,4 +1,5 @@
-# 01.basics > ex06 React(API 기반) 애플리케이션으로 리팩토링
+# 01.basics > ex07
+## CRA로 만든 Application을 직접 설정해서 만들어 보기
 
 ### 1.설치 
 
@@ -8,16 +9,16 @@
  $npm i react react-dom
 ```
 
-설정: 
+설정파일
 babel : babel.config.json
 webpack:  webpack.config.js 
 
- babel.config.json에 @babel/preset-react 추가
- webpack.config.js 에서 babel loader설정하기
-
-package.json의 스크립트 추가하기
+1. babel.config.json에 @babel/preset-react 추가
+2.  webpack.config.js 에서 babel loader설정하기
+3. package.json의 스크립트 추가하기
   "scripts": {
     "start": "npx webpack serve --progress",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx webpack"
   },
+
