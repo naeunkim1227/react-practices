@@ -13,8 +13,11 @@
 + ex04 : 
     1) state
     2) ajax
+    3) kanbanboard - ex06
 + ex05
+    Component Lifecycle
 + ex06
+    Immutabillity(불변성) of Component's State
 emaillist
 gallery
 guestbook
