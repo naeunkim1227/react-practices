@@ -1,4 +1,4 @@
-# 02.Component - ex02
+# 02.Component - ex02😖
 ## Component Styling(Working with UI)
 
 ### 01. Inline Styling

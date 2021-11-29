@@ -1,4 +1,4 @@
-# React Pracitces - Component
+# React Pracitces - Component🤠
 
 ## ex01 : Property 
 1. Component 작성 법

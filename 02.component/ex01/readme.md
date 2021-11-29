@@ -1,4 +1,4 @@
-# 02. Component > ex01 Property 
+# 02. Component > ex01 Property🤢
 
 ### 1. props (property)
     1) 컴포넌트의 데이터
