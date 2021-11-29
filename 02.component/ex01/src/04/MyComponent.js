@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import  {PropTypes}  from 'prop-types';
 
-export default function MyComponent({props01,props02,props03,props04,props05,props06}){
+export default function MyComponent({props01,props02,props03,props04,props05,props06, props07,props08,props09}){
     return(
         <Fragment>
             <h2>Property Validation</h2>
@@ -25,7 +25,25 @@ export default function MyComponent({props01,props02,props03,props04,props05,pro
             <span>props06: { props06 ? props06 : '--- Not Setting ---'}</ span>
             <br/>
           
-   
+            <span>props07: { props07 ? props07 : '--- Not Setting ---'}</ span>
+            <br/>
+          
+            <span>props08: { props08 ? props08.map((e,i) => e? <b key={i}>{'true'}</b> : <b key={i}>{'false'}</b> ) : '--- Not Setting ---'}</ span>
+            <br/>
+
+            <span>props09: 
+                { props09 ? 
+                    <div>
+                        <h3>{props09.no}</h3>
+                        <h4>{props09.name}</h4>
+                        <h5>{props09.email}</h5>
+                    </div> 
+                
+                : '--- Not Setting ---'}
+            </ span>
+            <br/>
+
+
             
         </Fragment>
     )
@@ -39,8 +57,19 @@ MyComponent.propTypes = {
    props03 : PropTypes.boolean,
    props04 : PropTypes.object,
    props05 : PropTypes.array,
-   props06 : PropTypes.func
+   props06 : PropTypes.func,
        
+
+    //Built-In PropTypes Validator(Combind Primitive)
+    props07 : PropTypes.oneofType([PropTypes.stirng, PropTypes.number]).isRequired,
+    props08 : PropTypes.arrayof(PropTypes.boolean).isRequired,
+    props09 : PropTypes.shape({
+        no: PropTypes.number.isRequired,
+        name: PropTypes.stirng.isRequired,
+        email: PropTypes.stirng.isRequired
+    }).isRequired
+
+
    }
 
 
