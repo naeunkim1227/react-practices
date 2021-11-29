@@ -6,7 +6,7 @@ export default function(){
 
         return(
         <div id="App">
-            <h1 className={'Header'}>{`Normal CSS (css -loader options : false )`}</h1>
+            <h1 className={'Header'}>{`Normal CSS (css -loader options : true )`}</h1>
         </div>
     
          )
