@@ -97,7 +97,7 @@ ul, ol	{ list-style-type: none }
 
 
 
-.Guestbook__DeleteForm	{ height:200px }
+.Guestbook__DeleteForm	{ height:200px; background-color: #846B5C;}
 .Guestbook__DeleteForm form {
     width:300px;
     padding:10px;
