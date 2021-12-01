@@ -1,17 +1,60 @@
 import React, { useState } from 'react';
 import './assets/Form.css';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faCheckCircle, faTimesCircle} from '@fortawesome/free-solid-svg-icons';
 
 export default function Form() {
+    //3.값 변경
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [validemail, setValidEmail] = useState(false);
 
+    const onChangeInputName = (e) => {
+        //1.값을 치면 여기서 함수 실행        
+        
+        //setName(e.target.value)
+        //2.값 설정
+
+
+        //10자 제한(Validation)
+        setName(e.target.value.substr(0,10))
+    };
+    const onChangeInputEmail = (e) => {
+        //1.값을 치면 여기서 함수 실행        
+        setEmail(e.target.value)
+        //2.값 설정
+
+
+        const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g;
+        setValidEmail(re.test(e.target.value));
+
+
+    };
 
     return (
         <form id="joinForm" name="joinForm" method="post" action="/do/not/post">
             <label htmlFor="name">이름</label>
-            <input id="name" name="name" type="text" value={ "" } />
+            <input 
+                id="name" 
+                name="name" 
+                type="text"
+                value={ name }
+                onChange = {onChangeInputName}
+                />
 
             <label htmlFor="email">이메일</label>
-            <input id="email" name="email" type="text" value={ "" }/>
-
+            <input 
+                id="email" 
+                name="email" 
+                type="text" 
+                value={ email }
+                onChange={onChangeInputEmail}/>
+                { 
+                //email이 비어있으면 아무것도 하지 말고, 있으면 validemail 실행
+                email === '' ? null : 
+                validemail?  <FontAwesomeIcon icon={faCheckCircle}  style ={{ marginLeft: 5 , fontSize: 16 ,color: 'green'}}/> :
+                <FontAwesomeIcon icon={faTimesCircle} style ={{ marginLeft: 5 , fontSize: 16 ,color: 'red'}}/>
+                }
             <label htmlFor="password">패스워드</label>
             <input id="password" name="password" type="password" value={ "" } />
 
