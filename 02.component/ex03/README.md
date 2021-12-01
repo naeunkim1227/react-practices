@@ -49,3 +49,7 @@ Hook 함수
     const imageRef = useRef(null);
 
     //jQuery.$(imageRef.current) 다음과 같이 nativeDOM을 사용할 수 있게 된다.
+
+
+
+    

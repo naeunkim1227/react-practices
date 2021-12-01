@@ -17,9 +17,9 @@ export default function App() {
                 >
                
                 <ul>
-                    { Array.from({length: 100}, (e , i) => i+1).map(i =>
+                    { Array.from({0:'test' , 1: 'test2' ,length: 2}, (e , i) => e).map(e =>
                         <li>
-                            { `아이템 ${i} 입니다.` } 
+                            { `${e} 아이템  입니다.` } 
                         </li>
                     ) }
                 </ul>

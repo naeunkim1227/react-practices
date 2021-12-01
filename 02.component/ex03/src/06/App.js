@@ -2,12 +2,19 @@ import React, {Component, useRef} from 'react';
 import './assets/scss/App.scss';
 
 export default class App extends Component {
+ 
+    onScroll(e) {
+        console.log(this.outterRef.scrollTop, ':' , this.outterRef.clientHeight , ":" + this.innerRef.clientHeight); 
+    }
+
 
 
     render() {
         return (
             <div
-                className={'App'}>
+            ref= { ref => this.outterRef = ref }
+                className={'App'}
+                onScroll= { this.onScroll.bind(this) }>
                 <div
                     ref={ (ref) => this.innerRef = ref }>
                     <ul>
