@@ -30,3 +30,25 @@
             }
 
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    a = 'hello';
+    b = 'world';
+    'hello world'
+
+    [a,b].join('');
