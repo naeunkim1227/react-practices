@@ -1,3 +1,10 @@
+@charset "utf-8";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
 html,
 body {
     font: 0.75em "맑은 고딕", 돋움, 굴림;
@@ -10,7 +17,7 @@ ul, ol {
 
 :global(#root) {
     width: 100%;
-
+    
     :global(.App) {
         width: 300px;
         margin: 5px auto 0 auto;
@@ -19,7 +26,4 @@ ul, ol {
         border-radius: 2px;
         padding: 7px;
     }
-
 }
-
-

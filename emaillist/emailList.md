@@ -10,3 +10,12 @@
    scss
 
    :global(#root) 로 선언하면 해싱없이, 전체적으로 다 쓰겟다는 의미이다.
+
+
+
+
+
+Reactjs code snipperts
+
+rsc 하면 함수형
+te
