@@ -20,7 +20,18 @@
 1. Immutabillity(불변성) of Component's State
 
 emaillist : composing component data flow(bottom > top) b(node)/f 
-gallery : 과제,ajax file upload b(node)/f
+gallery : 과제,ajax file upload b(node)/f;
 guestbook : composing component b(node)/f
 kanbanboard : css module b(node)/f
 mysite : router + layout b(spring boot)/f
+
+
+
+
+
+
+
+
+
+
+
