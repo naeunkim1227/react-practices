@@ -3,7 +3,6 @@
 ## ex01 : Property 
 1. Component 작성 법
 2. data flow : top > down
-3. Kanbanboard - ex01
 ## ex02 : 
 1. Component Styling
 2. Kanbanboard
@@ -19,12 +18,13 @@
 ## ex06
 1. Immutabillity(불변성) of Component's State
 
+ajax: fetch,axios
+
 emaillist : composing component data flow(bottom > top) b(node)/f 
 gallery : 과제,ajax file upload b(node)/f;
 guestbook : composing component b(node)/f
 kanbanboard : css module b(node)/f
 mysite : router + layout b(spring boot)/f
-
 
 
 
