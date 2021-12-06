@@ -7,7 +7,7 @@ export default function Clock({message, hours, minutes, seconds}) {
 
 
 
-    return (
+    return ( 
         <div className={'clock-display'}>
             <h2>{message}</h2>
             <div className={'Clock'}>

@@ -33,7 +33,7 @@ module.exports = (env) => ({
         contentBase: path.resolve('public'),
         watchContentBase: true,
         host: "0.0.0.0",
-        port: 9999,
+        port: 9988,
         inline: true,
         liveReload: true,
         hot: false,
