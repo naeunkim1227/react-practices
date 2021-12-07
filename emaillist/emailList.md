@@ -53,12 +53,11 @@ emaillist
 [emaillist] $npm install
 
 
-cross-env NODE_ENV 환경변수 설정할 수 있다. 
+#### package.json
 
-
-"dev:backend": "cross-env NODE_ENV=development nodemon backend/index.js -e js,mjs,json,env --watch backend --name $npm_package_name",
-
- js,mjs,json,env 확장자 파일을 지켜보고 변경되면 재시작해라
+1. cross-env NODE_ENV 환경변수 설정할 수 있다. 
+2. "dev:backend": "cross-env NODE_ENV=development nodemon backend/index.js -e js,mjs,json,env --watch backend --name $npm_package_name",
+js,mjs,json,env 확장자 파일을 지켜보고 변경되면 재시작해라
 
 
 -----------------------------------------
@@ -72,3 +71,88 @@ cross-env NODE_ENV 환경변수 설정할 수 있다.
    :global(#root) 로 선언하면 해싱없이, 전체적으로 다 쓰겟다는 의미이다.
 Reactjs code snipperts
 rsc 하면 함수형
+
+
+
+## fetch
+
+```javascript
+const response = await fetch('/api', {
+      method: 'get',
+      mode: 'same-origin', //no-cors, cors, same-origin* 
+      credentials: 'same-origin',   //인증에 필요한 요소, 토큰, 세션아이디 // incluse.same-origin*
+      cache: 'no-cache',            // no-cache, reload, 
+      headers: {
+         'Content-Type' : 'application/json', //cf.application/ x-www-form-urlencoded
+         'Accept' : 'application/json' //text/hrml, xml, application/json
+      },
+      redirect: 'follow',  //follow*,error, manual(response.url)
+      referrer: '', //href로 눌러서 이동했을때, 그 전의 링크가 무엇이었는지 알수 있게 해준다.
+      body: null
+   }); 
+
+```
+
+#### cors란?
+
+1. origin(출처)
+   URL에서 protocol + host + port를 합친 것을 말한다.
+   
+   ```
+   > location.origin
+   < 'http://localhost:9999'
+   ```
+2. 같은 origin vs 다른 origin
+   - fetch를 이용해 api 통신을 나갈때 , 원래 origin과 통신을 나간 origin을 브라우저가 비교한다.
+   same origin이 아니면 보안상 위험때문에 error를 출력한다.
+
+3. Same origin Policy
+   - 브라우저가 동일 출처 정책(SOP)을 지켜서 다른 출처의 리소스 접근을 금지시킨다.
+   - 단점 : 외부 리소스를 가져올 수 없다.
+   - 장점 : XSS등과 같은 보안 취약점을 사전에 방지할 수 있다.
+
+4. CORS(Cross Origin Resource Sharing)
+
+   proxy를 사용해서, 
+
+   app.js에서 fetch로 데이터를 보낼때, apiserver로 바로 보내면 SOP가 위배가 된다.
+   그래서 proxy를 거쳐서 apiserver로 보낸다
+
+   app.js > devserver > proxy > api server
+
+
+mode를 cors로 설정해놓아야, 다시 응답을 돌려받는다.
+
+
+##### CORS 설정을 해야할때 나는 오류
+
+   ```
+   Access to fetch at 'http://localhost:8888/api' from origin 'http://localhost:9999' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+   ```
+
+   1) simple request
+      <pre>
+         JS          browser            server
+            ------->         -------->
+            fetch()
+      </pre>
+
+   2) preflight request
+      <pre>
+         JS               browser                server
+            ---------->           ----------->
+               fetch()              OPTIONS /api
+                                 <----------
+                                 200 OK
+                                 Access-Control-Allow-origin: *
+                                 모든 접근에 대해 수락한다
+                                 ----------->
+                                 GEt /api
+                                 <-----------
+                                 200 ok
+                                 Access-Control-Allow-origin:*
+                                 ==============================
+                                 "{.............}"
+       response <-------               
+      </pre>
+
