@@ -1,60 +1,58 @@
-import React, { useEffect, useState } from "react";
-import './assets/scss/App.scss';
-import RegisterForm from "./RegisterForm";
-import Emaillist from "./Emaillist";
+import React, {useState, useEffect} from 'react';
+import RegisterForm from './RegisterForm';
 import SearchBar from './SearchBar';
+import Emaillist from './Emaillist';
 
- import data from './assets/json/data.json'
+import './assets/scss/App.scss';
+// import data from './assets/json/data.json';
 
-export default function(){
-    const [emails, setEmails] = useState([]); 
+export default function() {
+    const [emails, setEmails] = useState([]);
     const [keyword, setKeyword] = useState('');
 
     const notifyKeywordChanged = (keyword) => {
-        setKeyword(keyword);
-    }
+      setKeyword(keyword);
+    };
 
-    useEffect(async() => {
-        try{
-       const response = await fetch('http://localhost:8888/api', {
-           method: 'get',
-           mode: 'cors', //no-cors, cors, same-origin* 
-           credentials: 'same-origin',   //인증에 필요한 요소, 토큰, 세션아이디 // incluse.same-origin*
-           cache: 'no-cache',            // no-cache, reload, 
-           headers: {
-               'Content-Type' : 'application/json', //cf.application/ x-www-form-urlencoded
-               'Accept' : 'application/json' //text/hrml, xml, application/json
-           },
-           redirect: 'follow',  //follow*,error, manual(response.url)
-           referrer: '', //href로 눌러서 이동했을때, 그 전의 링크가 무엇이었는지 알수 있게 해준다.
-           body: null
-        }); 
-        
-        if(!response.ok){
-            throw new Error(`${response.status} ${response.statusText}`);
+    useEffect(async () => {
+      try {
+        const response = await fetch('http://localhost:8888/api', {
+          method: 'get',
+          mode: 'cors',                           // no-cors, cors, same-origin*
+          credentials: 'include',                 // include, omit, same-origin*
+          cache: 'no-cache',                      // no-cache, reload, force-cache, default*      
+          headers: {
+            'Content-Type': 'application/json',   // cf. application/x-www-form-urlencoded
+            'Accept': 'application/json'          // cf. text/html
+          },
+          redirect: 'follow',                     // follow*, error, manual(response.url)
+          referrer: 'client',                     // no-referrer, *client          
+          body: null
+        });
+
+        if(!response.ok) {
+          throw new Error(`${response.status} ${response.statusText}`);
         }
 
+        const jsonResult = await response.json();
+        console.log(jsonResult);
 
-        const JsonResult = await response.json();
-
-        if(JsonResult.result !== 'success'){
-            throw new Error(`${JsonResult.result} ${JsonResult.message}`);
+        if(jsonResult.result !== 'success') {
+          throw new Error(`${jsonResult.result} ${jsonResult.message}`);
         }
 
-        setEmails(JsonResult.data);
+        setEmails(jsonResult.data);
 
-    }catch(err){
+      } catch (err) {
         console.error(err);
-    }
-
+      }
     }, []);
 
-    return(
+    return (
         <div className={'App'}>
-            <RegisterForm />
+          <RegisterForm />
           <SearchBar keyword={keyword} callback={notifyKeywordChanged} />
-          <Emaillist keyword={keyword} emails={data} />  
+          <Emaillist keyword={keyword} emails={emails} />  
         </div>
-    
     )
 }

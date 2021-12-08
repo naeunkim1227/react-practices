@@ -77,20 +77,20 @@ rsc 하면 함수형
 ## fetch
 
 ```javascript
-const response = await fetch('/api', {
-      method: 'get',
-      mode: 'same-origin', //no-cors, cors, same-origin* 
-      credentials: 'same-origin',   //인증에 필요한 요소, 토큰, 세션아이디 // incluse.same-origin*
-      cache: 'no-cache',            // no-cache, reload, 
-      headers: {
-         'Content-Type' : 'application/json', //cf.application/ x-www-form-urlencoded
-         'Accept' : 'application/json' //text/hrml, xml, application/json
-      },
-      redirect: 'follow',  //follow*,error, manual(response.url)
-      referrer: '', //href로 눌러서 이동했을때, 그 전의 링크가 무엇이었는지 알수 있게 해준다.
-      body: null
-   }); 
-
+    const response = await fetch('/api', {
+           method: 'get',
+           mode: 'cors', //no-cors, cors, same-origin* 
+           credentials: 'include',   //인증에 필요한 요소, 토큰, 세션아이디 // incluse.same-origin*
+           cache: 'no-cache',            // no-cache, reload, 
+           headers: {
+               'Content-Type' : 'application/json', //cf.application/ x-www-form-urlencoded
+               'Accept' : 'application/json' //text/hrml, xml, application/json
+           },
+           redirect: 'follow',  //follow*,error, manual(response.url)
+           referrer: '', //href로 눌러서 이동했을때, 그 전의 링크가 무엇이었는지 알수 있게 해준다.
+           body: null
+        }); 
+        
 ```
 
 #### cors란?
@@ -134,25 +134,40 @@ mode를 cors로 설정해놓아야, 다시 응답을 돌려받는다.
       <pre>
          JS          browser            server
             ------->         -------->
-            fetch()
+                              GEt /api
+                              <-----------
+                              200 ok
+                              Access-Control-Allow-origin:*
+                              ==============================
+                              "{.............}"
       </pre>
+      조건: 
+      1) GET, HEAD, POST 중의 하나의 method를 쓰는 경우
+      2) Accept,Accept-Language, Content-Type 등의 헤더만 사용하는 경우
+      3) Content-Type 헤더에 application/x-www-urlencoded, multipart/for-data, text/palin인 경우
 
    2) preflight request
       <pre>
          JS               browser                server
             ---------->           ----------->
                fetch()              OPTIONS /api
+                                    Access-Control-Request-Headers
                                  <----------
                                  200 OK
-                                 Access-Control-Allow-origin: *
-                                 모든 접근에 대해 수락한다
+                                 Access-Control-Allow-Origin: 'http://localhost:9999'
                                  ----------->
                                  GEt /api
                                  <-----------
                                  200 ok
-                                 Access-Control-Allow-origin:*
+                                 Access-Control-Allow-Origin:*
+                                 모든 접근에 대해 수락한다
+                                 cookies: .....
                                  ==============================
                                  "{.............}"
        response <-------               
       </pre>
 
+
+
+### credentials
+include로 설정해놔야 sameorigin이 아니라도 쿠키 전송이 가능하다.
